@@ -11,13 +11,15 @@ from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
 from alembic import context
-
-# Теперь эти импорты сработают корректно
 from app.core.config import settings
-from .base import Base
+
+# Импорт Base и всех моделей по абсолютным путям
+from app.db.models.base import Base
 from app.db.models.domain import Domain
 from app.db.models.template import Template
 from app.db.models.page import Page
+from app.db.models.analytics import PageAnalytics
+from app.db.models.history import PageHistory
 
 config = context.config
 config.set_main_option("sqlalchemy.url", settings.SQLALCHEMY_DATABASE_URI)
